@@ -10,20 +10,6 @@ import webpackConfig from './webpack.config.babel.js';
 import { name } from './package.json';
 
 const $ = loadPlugins();
-const banner = `  <!--
-    
-    
-    <%= pkg.name %> - <%= pkg.description %>
-    
-    version <%= pkg.version %>
-    
-    with love from Moniker
-    
-    studiomoniker.com – @studiomoniker.com – github.com/studiomoniker
-    
-    
-  -->`;
-
 
 gulp.task('package:webpack', (callback) => {
   // modify some webpack config options
