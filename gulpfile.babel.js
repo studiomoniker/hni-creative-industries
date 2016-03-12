@@ -6,7 +6,7 @@ import inlinesource from 'gulp-inline-source';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import webpackConfig from './webpack.config.js';
+import webpackConfig from './webpack.config.babel.js';
 import { name } from './package.json';
 
 const $ = loadPlugins();
@@ -73,15 +73,6 @@ gulp.task('webpack-dev-server', () => {
   });
 });
 
-gulp.task('package:html',
-  [ 'package:webpack' ],
-  () => {
-    return gulp.src('dist/index.html')
-      .pipe($.header(banner, { pkg : require('./package.json') } ))
-      .pipe(gulp.dest('dist/'));
-  }
-);
-
 // Set-production
 gulp.task('set-production',
   () => process.env.NODE_ENV = 'production'
@@ -89,8 +80,7 @@ gulp.task('set-production',
 
 gulp.task('package:inline',
   [
-    'package:webpack',
-    'package:html'
+    'package:webpack'
   ],
   () => {
     return gulp.src('dist/index.html')
@@ -116,7 +106,6 @@ gulp.task('package',
     'set-production',
     'package:webpack',
     'package:inline',
-    'package:html',
     'package:zip'
   ]
 );
