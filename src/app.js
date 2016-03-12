@@ -44,7 +44,6 @@ function type() {
   for (let i = 0; i < 10; i++) {
     let career = inventCareer();
     career = addBreaks(career);
-    console.log(career);
     careers.push(`${indefiniteArticle(career).replace(/a/, '')} ${career}`);
   }
 
