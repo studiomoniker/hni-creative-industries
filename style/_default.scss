@@ -1,5 +1,22 @@
+@keyframes scaling {
+  From {
+      transform: translate(-50%, -50%) scale(1);
+  }
+  To {
+      transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
 body {
-  font-family: HelveticaTextbookCom-Roman, HelveticaTextbook-Roman, Helvetica, Arial, sans-serif;
+  font-family: "Neue Haas Grotesk Display";
+  background: #ECECEC;
+}
+
+@font-face {
+  font-family: "Neue Haas Grotesk Display";
+  src:  url("../assets/font.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
 }
 
 html, body{
@@ -11,9 +28,48 @@ html, body{
 
 h1 {
   position: absolute;
-  left: 50%;
+  width: 100%;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 80px;
+  font-size: 9vw;
   text-align: center;
+  margin-top: 0;
+  word-spacing: 0.1em;
+  line-height: 1em;
+}
+
+div {
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.iam {
+  color: #20bbfc
+}
+
+h1.klinker .n {
+  display: inline;
+}
+
+h1 .n {
+  display: none;
+}
+
+span {
+}
+
+.typed-cursor{
+    opacity: 1;
+    animation: blink 1.2s infinite;
+}
+
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:1; }
+    50.01% { opacity:0; }
+    100% { opacity:0; }
 }

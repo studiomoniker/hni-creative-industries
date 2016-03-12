@@ -1,40 +1,64 @@
 import './lib/message';
-import Foswig from 'foswig';
-import jobs from './jobs';
+import Typed from './typed';
+import components from './components';
+import artComponents from './art-components';
+import indefiniteArticle from 'indefinite-article';
+import picker from './picker';
 
-var components = [[],[],[]];
-
-jobs.forEach((job) => {
-  let words = job.split(' ');
-  if (words.length === 3) {
-    words.forEach((word, index) => {
-      components[index].push(word);
-    });
-  }
-  if (words.length === 2) {
-    components[0].push(words[0]);
-    components[2].push(words[1]);
-  }
-  if (words.length == 1)
-    components[2].push(words[0]);
-});
-
-console.log(components);
+const pickers = components.map(picker);
+const artPickers = artComponents.map(picker);
+const wordsEl = document.querySelector('.words');
 
 function pick(array) {
-  var index = Math.floor(Math.random() * array.length);
+  const index = Math.floor(Math.random() * array.length);
   return array[index];
 }
 
-var element = document.querySelector('h1');
-var counter = 0;
-setInterval(function() {
-  counter++;
-  element.innerHTML = counter === 1 
-    ? 'I am a'
-    : counter % 2 === 1
-    ? 'slash'
-    : Math.random() > 0.6
-      ? `${pick(components[0])}<br>${pick(components[1])}<br>${pick(components[2])}`
-      : `${pick(components[0])}<br>${pick(components[2])}`;
-}, 1500);
+const careerInventors = [
+  () => `${pickers[0]()} ${artPickers[2]()}`,
+  () => `${artPickers[0]()} ${pickers[2]()}`,
+  () => `${pickers[0]()} ${pickers[1]()} ${artPickers[2]()}`,
+  () => `${artPickers[0]()} ${pickers[1]()} ${pickers[2]()}`
+];
+
+function inventCareer() {
+  return pick(careerInventors)();
+}
+
+function addBreaks(sentence) {
+  let words = sentence.split(' ');
+  let count = 6; // I'm a
+  for (let i = 0, l = words.length - 1; i < l; i++) {
+    let word = words[i];
+    count += word.length + 1; // 1 = space
+    if (count + words[i + 1].length > 20) {
+      words[i] = word + '<br>';
+      count = 0;
+    }
+  }
+  return words.join(' ');
+}
+
+function type() {
+  const careers = [];
+  for (let i = 0; i < 10; i++) {
+    let career = inventCareer();
+    career = addBreaks(career);
+    console.log(career);
+    careers.push(`${indefiniteArticle(career).replace(/a/, '')} ${career}`);
+  }
+
+  // End by removing text:
+  careers.push('');
+
+  new Typed(wordsEl, {
+    strings: careers,
+    typeSpeed: 100,
+    backDelay: 2000,
+    backSpeed: 50,
+    startDelay: 1000,
+    callback: type // Repeat when done
+  });
+}
+
+type();
