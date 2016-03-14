@@ -24,6 +24,8 @@ class Typer {
 
   character(speed, change, doneCount, callback) {
     setTimeout(() => {
+      if (this.sentence === '')
+        return callback();
       this.characterIndex += change;
       this.string = this.sentence.substr(0, this.characterIndex);
       this.updateElement();
