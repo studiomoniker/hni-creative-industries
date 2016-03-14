@@ -2,10 +2,10 @@ class Typer {
   constructor (param) {
     this.element = param.element;
     this.sentences = param.sentences.slice();
-    this.typeSpeed = param.typeSpeed;
+    this.typeSpeed = param.typeSpeed || 100;
     this.removeSpeed = param.removeSpeed || 30;
-    this.backDelay = param.backDelay;
-    this.startDelay = param.startDelay;
+    this.backDelay = param.backDelay || 0;
+    this.startDelay = param.startDelay || 0;
   }
 
   start(callback) {
