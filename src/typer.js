@@ -39,12 +39,14 @@ class Typer {
     this.character(this.typeSpeed, 1, this.sentence.length, callback);
   }
 
-  updateElement() {
-    this.element.innerHTML = this.string.replace(/\n/g, '<br>');
-  }
-
   removeCharacter(callback) {
     this.character(this.typeSpeed * 0.5, -1, 0, callback);
+  }
+
+  updateElement() {
+    window.requestAnimationFrame(() => {
+      this.element.innerHTML = this.string.replace(/\n/g, '<br>');
+    });
   }
 
   typeSentences(callback) {
