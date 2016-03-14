@@ -1,5 +1,5 @@
 import './lib/message';
-import Typed from './typed';
+import type from './typer';
 import components from './components';
 import artComponents from './art-components';
 import indefiniteArticle from 'indefinite-article';
@@ -32,14 +32,14 @@ function addBreaks(sentence) {
     let word = words[i];
     count += word.length + 1; // 1 = space
     if (count + words[i + 1].length > 20) {
-      words[i] = word + '<br>';
+      words[i] = word + '\n';
       count = 0;
     }
   }
   return words.join(' ');
 }
 
-function type() {
+function typeCareers() {
   const careers = [];
   for (let i = 0; i < 10; i++) {
     let career = inventCareer();
@@ -50,14 +50,14 @@ function type() {
   // End by removing text:
   careers.push('');
 
-  new Typed(wordsEl, {
-    strings: careers,
+  type({
+    element: wordsEl, 
+    sentences: careers,
     typeSpeed: 100,
     backDelay: 2000,
     backSpeed: 50,
-    startDelay: 1000,
-    callback: type // Repeat when done
-  });
+    startDelay: 1000
+  }, typeCareers);
 }
 
-type();
+typeCareers();
