@@ -51,9 +51,11 @@ class Typer {
 
   typeSentences(callback) {
     let onTypedSentence = () => {
+      // If there is another sentence recurse:
       if (this.sentences.length) {
         this.typeSentence(onTypedSentence);
       } else {
+        // If we are done, call back:
         callback();
       }
     };
