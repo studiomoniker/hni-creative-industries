@@ -47,9 +47,6 @@ function typeCareers() {
     careers.push(`${indefiniteArticle(career).replace(/a/, '')} ${career}`);
   }
 
-  // End by removing text:
-  careers.push('');
-
   type({
     element: wordsEl, 
     sentences: careers,
