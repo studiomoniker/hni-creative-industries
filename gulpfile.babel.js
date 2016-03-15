@@ -37,7 +37,7 @@ gulp.task('webpack-dev-server', () => {
   // Inline support for live reloading:
   myConfig.entry.unshift('webpack-dev-server/client?http://localhost:8080/');
 
-  myConfig.devtool = 'eval';
+  myConfig.devtool = 'source-map';
   myConfig.debug = true;
 
   // Start a webpack-dev-server
