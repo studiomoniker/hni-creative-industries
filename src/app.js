@@ -5,9 +5,9 @@ import artComponents from './art-components';
 import indefiniteArticle from 'indefinite-article';
 import uniquePicker from './uniquePicker';
 
-const wordsEl = document.querySelector('.words');
 const pickers = components.map(uniquePicker);
 const artPickers = artComponents.map(uniquePicker);
+const element = document.querySelector('.words');
 
 function pick(array) {
   const index = Math.floor(Math.random() * array.length);
@@ -48,7 +48,7 @@ function typeCareers() {
   }
 
   type({
-    element: wordsEl, 
+    element, 
     sentences: careers,
     typeSpeed: 100,
     backDelay: 2000,
