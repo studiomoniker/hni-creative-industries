@@ -18,10 +18,6 @@ class Typer {
     );
   }
 
-  getCurrentCharacter() {
-    return this.sentence[this.characterIndex];
-  }
-
   character(speed, change, doneCount, callback) {
     setTimeout(() => {
       if (this.sentence === '')
