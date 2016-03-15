@@ -3,11 +3,11 @@ import type from './typer';
 import components from './components';
 import artComponents from './art-components';
 import indefiniteArticle from 'indefinite-article';
-import picker from './picker';
+import uniquePicker from './uniquePicker';
 
-const pickers = components.map(picker);
-const artPickers = artComponents.map(picker);
 const wordsEl = document.querySelector('.words');
+const pickers = components.map(uniquePicker);
+const artPickers = artComponents.map(uniquePicker);
 
 function pick(array) {
   const index = Math.floor(Math.random() * array.length);

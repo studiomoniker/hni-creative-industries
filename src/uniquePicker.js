@@ -1,4 +1,4 @@
-export default function picker(array) {
+export default function uniquePicker(array) {
   let clone = [];
   return () => {
     if (!clone.length)
