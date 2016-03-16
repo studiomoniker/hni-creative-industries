@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import precss from 'precss';
 import webpack from 'webpack';
+import { execFileSync } from 'child_process';
 
 const extractCss = new ExtractTextPlugin('main.css');
 
@@ -70,7 +71,15 @@ module.exports = {
       new HtmlWebpackPlugin({
         template: './index.html',
         pkg: require('./package.json'),
-        inject: false
+        inject: false,
+        lastCommit: execFileSync('git',
+          [
+            'log',
+            '-1',
+            '--date=iso',
+            '--pretty=format:Commit – %H\n\n    Date – %cd\n\n    Author – %cn\n\n    Subject – %s\n'
+          ]
+        )
       })
    ]
 };
