@@ -1,25 +1,11 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var autoprefixer = require('autoprefixer');
-var precss = require('precss');
-var webpack = require('webpack');
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import autoprefixer from 'autoprefixer';
+import precss from 'precss';
+import webpack from 'webpack';
 
-var extractCss = new ExtractTextPlugin('main.css');
-
-const banner = `  <!--
-    
-    
-    <%= pkg.name %> - <%= pkg.description %>
-    
-    version <%= pkg.version %>
-    
-    with love from Moniker
-    
-    studiomoniker.com – @studiomoniker.com – github.com/studiomoniker
-    
-    
-  -->`;
+const extractCss = new ExtractTextPlugin('main.css');
 
 module.exports = {
    context: __dirname,
