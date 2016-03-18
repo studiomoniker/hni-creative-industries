@@ -17,7 +17,7 @@ gulp.task('package:webpack', (callback) => {
   myConfig.plugins = myConfig.plugins.concat(
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-        comments: true
+        comments: saveLicense
     })
   );
 
