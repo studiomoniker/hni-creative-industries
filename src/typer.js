@@ -4,8 +4,11 @@ class Typer {
     this.sentences = param.sentences.slice();
     this.typeSpeed = param.typeSpeed || 100;
     this.removeSpeed = param.removeSpeed || 30;
-    this.backDelay = param.backDelay || 0;
+    this.backDelay = param.backDelay || 2000;
     this.startDelay = param.startDelay || 0;
+    this.removeAtEnd = param.removeAtEnd !== undefined
+       ? param.removeAtEnd
+       : true;
   }
 
   start(callback) {
@@ -64,6 +67,9 @@ class Typer {
     this.sentence = this.sentences.shift();
     this.characterIndex = 0;
     this.addCharacter(() => {
+      if (!this.removeAtEnd) {
+        return callback();
+      }
       setTimeout(
         () => this.removeCharacter(() => {
           setTimeout(callback, this.startDelay);

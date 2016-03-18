@@ -7,12 +7,6 @@ import uniquePicker from './uniquePicker';
 
 const pickers = components.map(uniquePicker);
 const artPickers = artComponents.map(uniquePicker);
-const element = document.querySelector('.words');
-
-function pick(array) {
-  const index = Math.floor(Math.random() * array.length);
-  return array[index];
-}
 
 const careerInventors = [
   () => `${pickers[0]()} ${artPickers[2]()}`,
@@ -20,6 +14,14 @@ const careerInventors = [
   () => `${pickers[0]()} ${pickers[1]()} ${artPickers[2]()}`,
   () => `${artPickers[0]()} ${pickers[1]()} ${pickers[2]()}`
 ];
+
+// Start with the introduction, then add careers:
+typeIntroduction(typeCareers);
+
+function pick(array) {
+  const index = Math.floor(Math.random() * array.length);
+  return array[index];
+}
 
 function inventCareer() {
   return pick(careerInventors)();
@@ -46,15 +48,18 @@ function typeCareers() {
     career = addBreaks(career);
     careers.push(`${indefiniteArticle(career).replace(/a/, '')} ${career}`);
   }
-
   type({
-    element, 
-    sentences: careers,
-    typeSpeed: 100,
-    backDelay: 2000,
-    backSpeed: 50,
-    startDelay: 1000
-  }, typeCareers);
+      element: document.querySelector('.words'), 
+      sentences: careers,
+      startDelay: 1000
+    }, typeCareers);
 }
 
-typeCareers();
+function typeIntroduction(callback) {
+  type({
+      element: document.querySelector('.iam'), 
+      sentences: ['I’m a'],
+      removeAtEnd: false,
+      startDelay: 1000
+    }, callback);
+}
