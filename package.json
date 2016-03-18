@@ -1,7 +1,7 @@
 {
-  "name": "HNI",
+  "name": "hni-creative-industries",
   "version": "1.0.0",
-  "description": "Creative Industries",
+  "description": "Web cover for Creative Industries",
   "main": "dist/index.html",
   "author": "Moniker",
   "license": "MIT",

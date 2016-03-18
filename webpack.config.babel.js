@@ -23,14 +23,17 @@ const headerParam = {
       '--pretty=format:%cd\n             %H\n             %cn: %s'
     ]
   ),
-  love: 'Moniker',
-  'studiomoniker.com': '@studiomoniker – github.com/studiomoniker'
+  contact: 'info@studiomoniker.com – twitter.com/studiomoniker – github.com/studiomoniker',
+  love: 'Moniker'
 };
 
 function generateHeader() {
-  var header = '';
+  const toUppercase = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+  let header = '';
   for (var name in headerParam) {
-    header += `    ${name.charAt(0).toUpperCase() + name.slice(1)} – ${headerParam[name]}\n\n`;
+    if (headerParam[name]) {
+      header += `    ${toUppercase(name)} – ${headerParam[name]}\n\n`;
+    }
   }
   return `  <!--\n\n${header}   -->`;
 }
@@ -99,7 +102,7 @@ module.exports = {
         template: './index.html',
         inject: false,
         header: generateHeader(),
-        title: packageInfo.name + ' – ' + packageInfo.description
+        title: packageInfo.description + ' by Moniker'
       })
    ]
 };
