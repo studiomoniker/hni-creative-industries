@@ -7,7 +7,7 @@ import gutil from 'gulp-util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import webpackConfig from './webpack.config.babel.js';
-import { name } from './package.json';
+import saveLicense from 'uglify-save-license';
 
 const $ = loadPlugins();
 
@@ -16,7 +16,9 @@ gulp.task('package:webpack', (callback) => {
   var myConfig = Object.create(webpackConfig);
   myConfig.plugins = myConfig.plugins.concat(
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+        comments: true
+    })
   );
 
   // run webpack
@@ -70,7 +72,9 @@ gulp.task('package:inline',
   ],
   () => {
     return gulp.src('dist/index.html')
-      .pipe(inlinesource())
+      .pipe(inlinesource({
+        compress: false
+      }))
       .pipe(gulp.dest('dist'));
   }
 );
@@ -82,7 +86,7 @@ gulp.task('package:zip',
   ],
   () => {
     gulp.src(['dist/index.html', 'proxy-images/**'])
-      .pipe($.zip('Cover-' + name + '.zip'))
+      .pipe($.zip(`Cover-${require('./package.json').name}.zip`))
       .pipe(gulp.dest(''));
   }
 );

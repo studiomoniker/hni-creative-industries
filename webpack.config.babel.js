@@ -5,8 +5,35 @@ import autoprefixer from 'autoprefixer';
 import precss from 'precss';
 import webpack from 'webpack';
 import { execFileSync } from 'child_process';
+import packageInfo from './package.json';
 
 const extractCss = new ExtractTextPlugin('main.css');
+
+const headerParam = {
+  project: packageInfo.name,
+  description: packageInfo.description,
+  source: packageInfo.homepage,
+  license: packageInfo.license,
+  commit: execFileSync(
+    'git',
+    [
+      'log',
+      '-1',
+      '--date=iso',
+      '--pretty=format:%cd\n             %H\n             %cn: %s'
+    ]
+  ),
+  love: 'Moniker',
+  'studiomoniker.com': '@studiomoniker – github.com/studiomoniker'
+};
+
+function generateHeader() {
+  var header = '';
+  for (var name in headerParam) {
+    header += `    ${name.charAt(0).toUpperCase() + name.slice(1)} – ${headerParam[name]}\n\n`;
+  }
+  return `  <!--\n\n${header}   -->`;
+}
 
 module.exports = {
    context: __dirname,
@@ -70,16 +97,9 @@ module.exports = {
       ),
       new HtmlWebpackPlugin({
         template: './index.html',
-        pkg: require('./package.json'),
         inject: false,
-        lastCommit: execFileSync('git',
-          [
-            'log',
-            '-1',
-            '--date=iso',
-            '--pretty=format:Commit – %H\n\n    Date – %cd\n\n    Author – %cn\n\n    Subject – %s\n'
-          ]
-        )
+        header: generateHeader(),
+        title: packageInfo.name + ' – ' + packageInfo.description
       })
    ]
 };
