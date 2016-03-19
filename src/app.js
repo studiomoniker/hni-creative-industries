@@ -28,17 +28,25 @@ function inventCareer() {
 }
 
 function addBreaks(sentence) {
-  let words = sentence.split(' ');
-  let count = 6; // I'm a
+  const maxCharacters = 18;
+  const words = sentence.split(' ');
+  let count = 6; // I'm a 
+  const firstWord = words[0];
+  if (indefiniteArticle(firstWord) === 'an')
+    count += 1;
+  if (count + firstWord.length > maxCharacters) {
+    words[0] = '\n' + words[0];
+    count = 0;
+  }
   for (let i = 0, l = words.length - 1; i < l; i++) {
     let word = words[i];
     count += word.length + 1; // 1 = space
-    if (count + words[i + 1].length > 20) {
+    if (count + words[i + 1].length + 1 > maxCharacters) {
       words[i] = word + '\n';
       count = 0;
     }
   }
-  return words.join(' ');
+  return words.join(' ').replace(/\n /g, '\n');
 }
 
 function typeCareers() {
