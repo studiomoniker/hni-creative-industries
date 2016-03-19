@@ -5,7 +5,7 @@
   "main": "dist/index.html",
   "author": "Moniker",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/studiomoniker/hni-creative-industries/",
+  "homepage": "https://github.com/studiomoniker/hni-creative-industries",
   "devDependencies": {
     "autoprefixer": "^6.3.3",
     "babel-core": "^6.7.2",
