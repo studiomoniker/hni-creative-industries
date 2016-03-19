@@ -4,7 +4,6 @@ export default function uniquePicker(array) {
     if (!clone.length)
       clone = array.slice(0);
     let index = Math.floor(Math.random() * clone.length);
-    let object = clone.splice(index, 1)[0];
-    return object;
+    return clone.splice(index, 1)[0];
   };
 }
