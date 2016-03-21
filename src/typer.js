@@ -9,6 +9,7 @@ class Typer {
     this.removeAtEnd = param.removeAtEnd !== undefined
        ? param.removeAtEnd
        : true;
+    this.onBeforeType = param.onBeforeType && param.onBeforeType.bind(this);
   }
 
   start(callback) {
@@ -24,6 +25,9 @@ class Typer {
         return callback();
       this.characterIndex += change;
       this.string = this.sentence.substr(0, this.characterIndex);
+      if (this.onBeforeType) {
+        this.onBeforeType();
+      }
       this.updateElement();
       if (this.characterIndex === doneCount) {
         callback();
@@ -45,7 +49,7 @@ class Typer {
 
   updateElement() {
     window.requestAnimationFrame(() => {
-      this.element.innerHTML = this.string.replace(/\n/g, '<br>');
+      this.element.innerHTML = this.string;
     });
   }
 
