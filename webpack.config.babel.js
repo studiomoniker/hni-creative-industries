@@ -92,13 +92,13 @@ module.exports = {
           { from: 'assets' }
         ],
         {
-           ignore: [
-              '*.woff',
-              '*.woff2',
-              '*.ttf',
-              '*.otf',
-              { dot: false }
-           ]
+          ignore: [
+            '*.woff',
+            '*.woff2',
+            '*.ttf',
+            '*.otf',
+            { dot: false }
+          ]
         }
       ),
       new HtmlWebpackPlugin({
