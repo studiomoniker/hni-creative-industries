@@ -13,10 +13,7 @@ class Typer {
 
   start(callback) {
     setTimeout(
-      () => this.typeSentences(() => {
-        if (callback)
-          callback();
-      }),
+      () => this.typeSentences(callback),
       this.startDelay
     );
   }
