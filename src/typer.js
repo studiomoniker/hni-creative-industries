@@ -38,7 +38,9 @@ class Typer {
   }
 
   removeCharacter(callback) {
-    this.character(this.typeSpeed * 0.5, -1, 0, callback);
+    // Removing is twice as fast as adding
+    let typeSpeed = this.typeSpeed * 0.5;
+    this.character(typeSpeed, -1, 0, callback);
   }
 
   updateElement() {
