@@ -53,8 +53,10 @@ class Typer {
     let onTypedSentence = () => {
       // If there is another sentence recurse:
       if (this.sentences.length) {
-        this.typeSentence(onTypedSentence);
-      } else {
+        window.requestAnimationFrame(() => {
+          this.typeSentence(onTypedSentence);
+        });
+      } else if (callback) {
         // If we are done, call back:
         callback();
       }
