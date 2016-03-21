@@ -51,13 +51,14 @@ div {
   color: #20bbfc;
 }
 
-.typed-cursor{
+.typed-cursor {
     opacity: 1;
     animation: blink 1.2s infinite;
     color: #20bbfc;
+    font-family: arial, "Maison Neue TRIAL";
 }
 
-@keyframes blink{
+@keyframes blink {
     0% { opacity: 1; }
     50% { opacity: 1; }
     50.01% { opacity: 0; }
