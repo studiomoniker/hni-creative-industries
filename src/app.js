@@ -29,31 +29,33 @@ function inventCareer() {
 
 function addBreaks(sentence) {
   const maxCharacters = 17;
-  const br = '<br>';
+  const br = '\n';
   const words = sentence.split(' ');
-  let count = 5; // I'm a 
+  let count = 6; // I'm a 
   const firstWord = words[0];
   if (indefiniteArticle(firstWord) === 'an')
     count += 1;
   if (count + firstWord.length > maxCharacters) {
-    words[0] = br + words[0];
+    words[0] = br + firstWord;
     count = 0;
   }
   for (let i = 0, l = words.length - 1; i < l; i++) {
-    let word = words[i];
+    const word = words[i];
+    const nextWord = words[i + 1];
     count += word.length + 1; // 1 = space
-    if (count + words[i + 1].length + 1 > maxCharacters) {
-      words[i] = word + br;
+    if (count + nextWord.length + 1 > maxCharacters) {
+      words[i] += br;
       count = 0;
     }
   }
-  return words.join(' ').replace(/\<br\> /g, '<br>');
+  return words.join(' ').replace(/\n /g, '\n');
 }
 
 function typeCareers() {
   const careers = [];
   for (let i = 0; i < 10; i++) {
     let career = inventCareer();
+    career = addBreaks(career);
     careers.push(`${indefiniteArticle(career).replace(/a/, '')} ${career}`);
   }
   type({
@@ -61,11 +63,11 @@ function typeCareers() {
       sentences: careers,
       startDelay: 1000,
       onBeforeType: function() {
-        this.string = addBreaks(this.string);
         if (/^n /.test(this.sentence)) {
           this.string = this.string
             .replace(/^n/, '<span class="iaman">n</span>');
         }
+        this.string = this.string.replace(/\n/g, '<br>')
       }
     }, typeCareers);
 }
