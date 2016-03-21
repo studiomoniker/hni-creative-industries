@@ -93,7 +93,10 @@ module.exports = {
         ],
         {
            ignore: [
-              'index.html',
+              '*.woff',
+              '*.woff2',
+              '*.ttf',
+              '*.otf',
               { dot: false }
            ]
         }
