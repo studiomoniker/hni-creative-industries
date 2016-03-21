@@ -8,12 +8,12 @@
 }
 
 body {
-  font-family: "Maison Neue TRIAL";
+  font-family: "MaisonNeueWEB";
   background: #ECECEC;
 }
 
 @font-face {
-  font-family: "Maison Neue TRIAL";
+  font-family: "MaisonNeueWEB";
   src:  url("../assets/MaisonNeueWEB-Bold.woff") format("woff");
   font-style: normal;
   font-weight: normal;
@@ -54,7 +54,7 @@ div {
     opacity: 1;
     animation: blink 1.2s infinite;
     color: #20bbfc;
-    font-family: arial, "Maison Neue TRIAL";
+    font-family: arial, "MaisonNeueWEB";
 }
 
 @keyframes blink {
