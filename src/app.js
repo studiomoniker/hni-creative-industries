@@ -28,7 +28,7 @@ function inventCareer() {
 }
 
 function addBreaks(sentence) {
-  const maxCharacters = 18;
+  const maxCharacters = 17;
   const words = sentence.split(' ');
   let count = 6; // I'm a 
   const firstWord = words[0];
