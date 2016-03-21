@@ -8,13 +8,13 @@
 }
 
 body {
-  font-family: "Neue Haas Grotesk Display";
+  font-family: "Maison Neue TRIAL";
   background: #ECECEC;
 }
 
 @font-face {
-  font-family: "Neue Haas Grotesk Display";
-  src:  url("../assets/font.woff") format("woff");
+  font-family: "Maison Neue TRIAL";
+  src:  url("../assets/MaisonNeueWEB-Bold.woff") format("woff");
   font-style: normal;
   font-weight: normal;
 }
@@ -32,10 +32,9 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 9vw;
+  font-size: 10vw;
   text-align: center;
   margin-top: 0;
-  word-spacing: 0.1em;
   line-height: 1em;
 }
 
